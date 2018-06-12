@@ -9,7 +9,7 @@ const userSchema = new Schema({
   password: String
 })
 
-// On Save hoot encrypt password
+// On Save hook encrypt password
 userSchema.pre('save', function(next) {
   const user = this
   bcrypt.genSalt(10, function(err, salt) {

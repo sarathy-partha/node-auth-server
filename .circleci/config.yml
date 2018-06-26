@@ -3,6 +3,14 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
 version: 2
+
+deployment:
+  staging:
+    branch: master
+    codedeploy:
+      node-auth-server:
+       deployment_group: nodejs-auth-server
+
 jobs:
   build:
     docker:
@@ -74,24 +82,14 @@ jobs:
           name: Deploy to AWS S3
           command: aws deploy push --application-name nodejs-auth-server --s3-location s3://nodejs-auth-server/auth-server.zip --ignore-hidden-files --source ~/node-auth-server
 
-
-  deployment:
-    staging:
-      branch: master
-      codedeploy:
-        node-auth-server:
-          deployment_group: nodejs-auth-server
-
 workflows:
   version: 2
   build-deploy-app:
     jobs:
       - build
-      - deployment
       - deploy-AWS:
           requires:
             - build
-            - deployment
           filters:
               branches:
                 only: master

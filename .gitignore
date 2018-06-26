@@ -1,5 +1,5 @@
 node_modules
-config
+#config
 *.log
 sample.js
 logs

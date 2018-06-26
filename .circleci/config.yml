@@ -77,7 +77,7 @@ jobs:
 
       - run:
           name: Deploy bundle to AWS EC2
-          command: aws deploy create-deployment --application-name nodejs-auth-server --s3-location bucket=nodejs-auth-server,key=auth-server.zip,bundleType=zip --deployment-group-name nodejs-auth-server
+          command: aws deploy create-deployment --application-name nodejs-auth-server --s3-location bucket=nodejs-auth-server,key=auth-server.zip,bundleType=zip --deployment-group-name node-deploy
 
 workflows:
   version: 2

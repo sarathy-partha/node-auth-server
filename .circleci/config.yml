@@ -4,13 +4,6 @@
 #
 version: 2
 
-deployment:
-  staging:
-    branch: master
-    codedeploy:
-      node-auth-server:
-       deployment_group: nodejs-auth-server
-
 jobs:
   build:
     docker:
@@ -79,8 +72,12 @@ jobs:
       #     command: aws configure 
 
       - run:
-          name: Deploy to AWS S3
+          name: Push bundle to AWS S3
           command: aws deploy push --application-name nodejs-auth-server --s3-location s3://nodejs-auth-server/auth-server.zip --ignore-hidden-files --source ~/node-auth-server
+
+      - run:
+          name: Deploy bundle to AWS EC2
+          command: aws deploy create-deployment --application-name nodejs-auth-server --s3-location bucket=nodejs-auth-server,key=auth-server.zip,bundleType=zip --deployment-group-name nodejs-auth-server
 
 workflows:
   version: 2

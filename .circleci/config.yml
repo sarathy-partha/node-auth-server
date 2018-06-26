@@ -87,6 +87,7 @@ workflows:
   build-deploy-app:
     jobs:
       - build
+      - deployment
       - deploy-AWS:
           requires:
             - build

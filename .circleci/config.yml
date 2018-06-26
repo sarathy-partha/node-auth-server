@@ -75,12 +75,12 @@ jobs:
           command: aws deploy push --application-name nodejs-auth-server --s3-location s3://nodejs-auth-server/auth-server.zip --ignore-hidden-files --source ~/node-auth-server
 
 
-deployment:
-  staging:
-    branch: master
-    codedeploy:
-      node-auth-server:
-        deployment_group: nodejs-auth-server
+  deployment:
+    staging:
+      branch: master
+      codedeploy:
+        node-auth-server:
+          deployment_group: nodejs-auth-server
 
 workflows:
   version: 2

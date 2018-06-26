@@ -14,7 +14,7 @@ jobs:
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/mongo:3.4.4
 
-    working_directory: ~/repo
+    working_directory: ~/node-auth-server
 
     steps:
       - checkout
@@ -32,7 +32,40 @@ jobs:
           paths:
             - node_modules
           key: node-auth-server-dependencies-{{ checksum "package.json" }}
-        
+
+      - persist_to_workspace:
+          root: ~/node-auth-server
+          paths:
+            - config
+            - controllers
+            - middleware
+            - models
+            - routes
+            - scripts
+            - services
+            - appspec.yml
+            - index.js
+            - package.json
+            - package-lock.json
+            - yarn.lock
       # run code quality!
       - run: yarn lint
 
+  deploy-AWS:
+    docker:
+      - image: circleci/python:2.7
+
+    working_directory: ~/node-auth-server
+
+    steps:
+      - attach_workspace:
+          # Must be absolute path or relative path from working_directory
+          at: ~/node-auth-server
+
+      - run:
+          name: Install AWS CLI
+          command: sudo pip install awscli
+
+      - run:
+          name: Deploy to AWS S3
+          command: aws deploy push --application-name nodejs-auth-server --s3-location s3://nodejs-auth-server/auth-server.zip --ignore-hidden-files --source ~/node-auth-server

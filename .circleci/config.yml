@@ -70,9 +70,9 @@ jobs:
       #     name: Configure CLI
       #     command: aws configure 
 
-      # - run:
-      #     name: Deploy to AWS S3
-      #     command: aws deploy push --application-name nodejs-auth-server --s3-location s3://nodejs-auth-server/auth-server.zip --ignore-hidden-files --source ~/node-auth-server
+      - run:
+          name: Deploy to AWS S3
+          command: aws deploy push --application-name nodejs-auth-server --s3-location s3://nodejs-auth-server/auth-server.zip --ignore-hidden-files --source ~/node-auth-server
 
 
 deployment:
@@ -90,6 +90,7 @@ workflows:
       - deploy-AWS:
           requires:
             - build
+            - deployment
           filters:
               branches:
                 only: master

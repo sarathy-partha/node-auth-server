@@ -57,6 +57,17 @@ jobs:
 
     working_directory: ~/node-auth-server
 
+    codedeploy:
+      node_auth_server:
+        application_root: /
+        region: ap-south-1
+        revision_location:
+          revision_type: S3
+          s3_location:
+            bucket: nodejs-auth-server
+            key_pattern: node-auth-server-{BRANCH}-{SHORT_COMMIT}
+        deployment_group: nodejs-auth-server
+
     steps:
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
@@ -66,9 +77,13 @@ jobs:
           name: Install AWS CLI
           command: sudo pip install awscli
 
-      - run:
-          name: Deploy to AWS S3
-          command: aws deploy push --application-name nodejs-auth-server --s3-location s3://nodejs-auth-server/auth-server.zip --ignore-hidden-files --source ~/node-auth-server
+      # - run:
+      #     name: Configure CLI
+      #     command: aws configure 
+
+      # - run:
+      #     name: Deploy to AWS S3
+      #     command: aws deploy push --application-name nodejs-auth-server --s3-location s3://nodejs-auth-server/auth-server.zip --ignore-hidden-files --source ~/node-auth-server
 
 workflows:
   version: 2

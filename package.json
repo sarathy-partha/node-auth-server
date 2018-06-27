@@ -1,7 +1,7 @@
 {
-  "name": "react-redux-server",
+  "name": "node-auth-server",
   "version": "1.0.0",
-  "description": "React Redux Demo Server",
+  "description": "NodeJS Auth Server - JWT, Local & Azure AD",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

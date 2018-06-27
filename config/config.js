@@ -77,7 +77,7 @@ exports.resourceURL = 'https://graph.windows.net'
 
 // The url you need to go to destroy the session with AAD
 exports.destroySessionUrl =
-  'https://login.microsoftonline.com/common/oauth2/logout?post_logout_redirect_uri=http://localhost:3000'
+  'https://login.microsoftonline.com/common/oauth2/logout?post_logout_redirect_uri=http://ec2-13-232-145-253.ap-south-1.compute.amazonaws.com:3000'
 
 // If you want to use the mongoDB session store for session middleware; otherwise we will use the default
 // session store provided by express-session.

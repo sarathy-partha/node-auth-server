@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
     "format-output": "prettier **/*.{js,ts}",
-    "format": "prettier --write '**/*.{js,ts}'"
+    "format": "prettier --write '**/*.{js,ts}'",
+    "precommit": "lint-staged"
   },
   "lint-staged": {
     "*.{js,ts}": [

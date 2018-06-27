@@ -28,7 +28,9 @@ exports.signup = function(req, res, next) {
 
     // If exists return error
     if (existingUser) {
-      return res.status(422).send({ error: 'Email is taken already, provide alternate email or signin with the same email' })
+      return res.status(422).send({
+        error: 'Email is taken already, provide alternate email or signin with the same email'
+      })
     }
 
     // If all good with user, create user

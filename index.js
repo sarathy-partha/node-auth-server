@@ -14,7 +14,10 @@ const expressSession = require('express-session')
 const methodOverride = require('method-override')
 // db setup
 
-mongoose.connect(config.mongoConnectionString)
+mongoose.connect(
+  config.mongoConnectionString,
+  { useNewUrlParser: true }
+)
 
 app.use(expressSession({ secret: 'keyboard cat', resave: true, saveUninitialized: false }))
 // App Setup

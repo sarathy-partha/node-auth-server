@@ -1,3 +1,5 @@
+require('dotenv').load()
+
 exports.creds = {
   // Required
   identityMetadata:
@@ -9,7 +11,7 @@ exports.creds = {
   // To use the common endpoint, you have to either set `validateIssuer` to false, or provide the `issuer` value.
 
   // Required, the client ID of your app in AAD
-  clientID: '58503eee-9791-40f5-9b1a-9f4f3e7b1af6',
+  clientID: process.env.AzureClientId,
 
   // Required, must be 'code', 'code id_token', 'id_token code' or 'id_token'
   responseType: 'code id_token',
@@ -25,7 +27,7 @@ exports.creds = {
 
   // Required if `responseType` is 'code', 'id_token code' or 'code id_token'.
   // If app key contains '\', replace it with '\\'.
-  clientSecret: 'JxQV6tntpEMB2GqIGa/RQXtqZRlko+YuYdB0jQFkH6M=',
+  clientSecret: process.env.AzureClientSecret,
 
   // Required to set to false if you don't want to validate issuer
   validateIssuer: true,

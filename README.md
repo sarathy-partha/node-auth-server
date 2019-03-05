@@ -100,6 +100,14 @@ module.exports = {
 }
 ```
 
+### .env
+
+```json
+AzureClientId=<Azure Client ID>
+AzureClientSecret=<Azure Client Secret>
+MongoConnectionString=<Connection String>
+```
+
 ## Install and Run
 
 ```shell

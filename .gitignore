@@ -3,3 +3,4 @@ node_modules
 *.log
 sample.js
 logs
+.env
